@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-articals
+spec:
+  selector:
+    matchLabels:
+      run: go-articals
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: go-articals
+    spec:
+      containers:
+      - name: go-articals
+        image: phani208/mygoapp:1.1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-articals
+  labels:
+    run: go-articals
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: go-articals
+
