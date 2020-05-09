@@ -27,12 +27,12 @@ func (dateService) Status(ctx context.Context) (string, error) {
 // Get will return today's date
 func (dateService) Get(ctx context.Context) (string, error) {
 	now := time.Now()
-	return now.Format("09/05/2020"), nil
+	return now.Format("02/01/2006"), nil
 }
 
 // Validate will check if the date today's date
 func (dateService) Validate(ctx context.Context, date string) (bool, error) {
-	_, err := time.Parse("09/05/2020", date)
+	_, err := time.Parse("02/01/2006", date)
 	if err != nil {
 		return false, err
 	}
